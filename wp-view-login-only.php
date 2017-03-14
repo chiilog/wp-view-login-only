@@ -13,13 +13,13 @@ function vlo_theme_name_script() {
 }
 add_action( 'login_enqueue_scripts', 'vlo_theme_name_script' );
 
-function vlo_no_login_redirect( $content ) {
+function vlo_view_login_only( $content ) {
 	global $pagenow;
 	if( !is_user_logged_in() && !is_admin() && ( $pagenow != 'wp-login.php' ) && php_sapi_name() !== 'cli' ){
 		auth_redirect();
 	}
 }
-add_action( 'init', 'vlo_no_login_redirect' );
+add_action( 'init', 'vlo_view_login_only' );
 
 function vlo_plugins_loaded() {
 	load_plugin_textdomain( 'wp-view-login-only', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
