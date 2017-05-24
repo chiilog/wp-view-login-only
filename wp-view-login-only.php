@@ -70,9 +70,7 @@ function vlo_options( $message ) {
 <?php
 	return $message;
 }
-?>
 
-<?php
 function vlo_add_login_message() {
 	if( !get_option( 'vlo-message-data' ) ) :
 		$message = __( 'Welcome to this site. Please log in to continue', 'wp-view-login-only' );
