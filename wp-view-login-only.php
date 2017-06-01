@@ -1,9 +1,10 @@
 <?php
 /*
  * Plugin Name: WP View Login Only
- * Plugin URI:
+ * Plugin URI: https://github.com/chiilog/wp-view-login-only
  * Description: If you view a website without log in, WordPress redirect to the login page
  * Author: mel_cha
+ * Author URI: http://chiilog.com/
  * Version: 1.0
  * Text Domain: wp-view-login-only
  */
@@ -45,9 +46,9 @@ function vlo_options( $message ) {
 ?>
 
 	<div class="wrap">
-		<h1><?php echo __( 'WP View Login Only' , 'wp-view-login-only' ); ?></h1>
+		<h1><?php _e( 'WP View Login Only' , 'wp-view-login-only' ); ?></h1>
 
-		<p><?php echo __( 'Enter the text to be displayed on the login page.Default message is " Welcome to this site. Please log in to continue ".' , 'wp-view-login-only' ) ?></p>
+		<p><?php _e( 'Enter the text to be displayed on the login page.Default message is " Welcome to this site. Please log in to continue ".' , 'wp-view-login-only' ) ?></p>
 		<form action="" id="vlo-menu-form" method="post">
 			<?php
 			wp_nonce_field( 'vlo-nonce-key', 'vlo-menu' );
@@ -59,7 +60,7 @@ function vlo_options( $message ) {
 			?>
 			<table class="form-table permalink-structure">
 				<tr>
-					<th><label for="vlo-message-data"><?php echo __( 'message' , 'wp-view-login-only' ) ?></label></th>
+					<th><label for="vlo-message-data"><?php _e( 'message' , 'wp-view-login-only' ) ?></label></th>
 					<td><textarea name="vlo-message-data" id="vlo-message-data" cols="80" rows="10"><?php echo esc_textarea( $message ); ?></textarea></td>
 				</tr>
 			</table>
@@ -83,12 +84,15 @@ function vlo_add_login_message() {
 add_filter( 'login_message', 'vlo_add_login_message' );
 
 function vlo_init() {
-	if( isset( $_POST['vlo-menu'] ) && $_POST['vlo-menu'] ) :
+	$menu = sanitize_option( $_POST['vlo-menu'] );
+	if( isset( $menu ) && $menu ) :
 		if( check_admin_referer( 'vlo-nonce-key', 'vlo-menu' ) ) :
 			$e = new WP_Error();
 
-			if ( isset( $_POST['vlo-message-data'] ) && $_POST['vlo-message-data'] ) :
-				update_option( 'vlo-message-data', $_POST['vlo-message-data'] );
+			$data = sanitize_option( $_POST['vlo-message-data'] );
+
+			if ( isset( $data ) && $data ) :
+				update_option( 'vlo-message-data', $data );
 				$e->add( 'error', __( 'saved the message', 'wp-view-login-only' ) );
 				set_transient( 'vlo-admin-errors', $e->get_error_messages(), 10 );
 			else :
@@ -115,4 +119,3 @@ function vlo_admin_notices() {
 	endif;
 }
 add_action( 'admin_notices', 'vlo_admin_notices' );
-?>
