@@ -17,5 +17,8 @@ If you view a website without log in, WordPress redirect to the login page
 
 == Changelog ==
 
+= 1.1 =
+* PHP_CodeSniffer checked.
+
 = 1.0 =
 * first release.

@@ -11,5 +11,8 @@ If you view a website without log in, WordPress redirect to the login page
 
 ## Changelog
 
+### 1.1.0
+* 2017-06-03 PHP_CodeSniffer checked.
+
 ### 1.0.0
 * 2017-03-14 Refactoring sourcecode and release as 'WP view login only'
