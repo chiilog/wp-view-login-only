@@ -12,6 +12,17 @@
  */
 
 /**
+ * Plugin's actions
+ */
+function vlo_init() {
+	add_action( 'init', 'vlo_view_login_only' );
+	add_action( 'init', 'vlo_plugins_loaded' );
+	add_action( 'admin_menu', 'vlo_add_menu' );
+	add_action( 'admin_init', 'vlo_save_options' );
+}
+vlo_init();
+
+/**
  * Pattern of not redirect
  */
 function vlo_view_login_only() {
@@ -20,7 +31,6 @@ function vlo_view_login_only() {
 		auth_redirect();
 	}
 }
-add_action( 'init', 'vlo_view_login_only' );
 
 /**
  * Load translation
@@ -28,7 +38,6 @@ add_action( 'init', 'vlo_view_login_only' );
 function vlo_plugins_loaded() {
 	load_plugin_textdomain( 'wp-view-login-only', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
-add_action( 'init', 'vlo_plugins_loaded' );
 
 /**
  * Add menubar options
@@ -42,7 +51,6 @@ function vlo_add_menu() {
 		'vlo_options'
 	);
 }
-add_action( 'admin_menu', 'vlo_add_menu' );
 
 /**
  * Option page contents
@@ -112,7 +120,6 @@ function vlo_save_options() {
 		wp_safe_redirect( menu_page_url( 'vlo_menu', false ) );
 	endif;
 }
-add_action( 'admin_init', 'vlo_save_options' );
 
 /**
  * Show notice
