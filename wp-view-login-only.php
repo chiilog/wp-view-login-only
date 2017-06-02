@@ -12,15 +12,6 @@
  */
 
 /**
- * Enqueue CSS
- */
-function vlo_theme_name_script() {
-	wp_enqueue_style( 'wp-view-login-only', plugins_url( 'css/wp-view-login-only.css', __FILE__ ), array(), null );
-	wp_print_styles();
-}
-add_action( 'login_enqueue_scripts', 'vlo_theme_name_script' );
-
-/**
  * Pattern of not redirect
  */
 function vlo_view_login_only() {
