@@ -109,10 +109,12 @@ add_filter( 'login_message', 'vlo_add_login_message' );
  * Save options
  */
 function vlo_save_options() {
-	if ( ! empty( filter_input( INPUT_POST, 'vlo-menu' ) ) ) :
+	$vlomenu = filter_input( INPUT_POST, 'vlo-menu' );
+	if ( ! empty( $vlomenu ) ) :
 		if ( check_admin_referer( 'vlo-nonce-key', 'vlo-menu' ) ) :
-			if ( ! empty( filter_input( INPUT_POST, 'vlo-message-data' ) ) ) :
-				update_option( 'vlo-message-data', sanitize_text_field( wp_unslash( filter_input( INPUT_POST, 'vlo-message-data' ) ) ) );
+			$data = filter_input( INPUT_POST, 'vlo-message-data' );
+			if ( ! empty( $data ) ) :
+				update_option( 'vlo-message-data', sanitize_text_field( wp_unslash( $data ) ) );
 			else :
 				update_option( 'vlo-message-data', '' );
 			endif;
