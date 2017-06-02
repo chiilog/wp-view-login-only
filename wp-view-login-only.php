@@ -55,10 +55,8 @@ add_action( 'admin_menu', 'vlo_add_menu' );
 
 /**
  * Option page contents
- *
- * @param callable $message Method to call.
  */
-function vlo_options( $message ) {
+function vlo_options() {
 	if ( ! current_user_can( 'activate_plugins' ) ) {
 		wp_die( esc_html__( 'You do not have sufficient permissions to access this page.' ), 'wp-view-login-only' );
 	}
@@ -70,9 +68,9 @@ function vlo_options( $message ) {
 		<p><?php esc_html_e( 'Enter the text to be displayed on the login page.Default message is " Welcome to this site. Please log in to continue ".' , 'wp-view-login-only' ) ?></p>
 		<form action="" id="vlo-menu-form" method="post">
 			<?php
-			wp_nonce_field( 'vlo-nonce-key', 'vlo-menu' );
-			if ( esc_textarea( get_option( 'vlo-message-data' ) ) ) :
-				$message = get_option( 'vlo-message-data' );
+			wp_nonce_field( 'vlo_nonce_key', 'vlo_menu' );
+			if ( esc_textarea( get_option( 'vlo_message_data' ) ) ) :
+				$message = get_option( 'vlo_message_data' );
 			else :
 				$message = __( 'Welcome to this site. Please log in to continue', 'wp-view-login-only' );
 			endif;
@@ -80,7 +78,7 @@ function vlo_options( $message ) {
 			<table class="form-table permalink-structure">
 				<tr>
 					<th><label for="vlo-message-data"><?php esc_html_e( 'message' , 'wp-view-login-only' ) ?></label></th>
-					<td><textarea name="vlo-message-data" id="vlo-message-data" cols="80" rows="10"><?php echo esc_textarea( $message ); ?></textarea></td>
+					<td><textarea name="vlo_message_data" id="vlo-message-data" cols="80" rows="10"><?php echo esc_textarea( $message ); ?></textarea></td>
 				</tr>
 			</table>
 
@@ -88,17 +86,16 @@ function vlo_options( $message ) {
 		</form>
 	</div>
 <?php
-	return $message;
 }
 
 /**
  * Return login message
  */
 function vlo_add_login_message() {
-	if ( ! get_option( 'vlo-message-data' ) ) :
+	if ( ! get_option( 'vlo_message_data' ) ) :
 		$message = __( 'Welcome to this site. Please log in to continue', 'wp-view-login-only' );
 	else :
-		$message = get_option( 'vlo-message-data' );
+		$message = get_option( 'vlo_message_data' );
 	endif;
 
 	return '<p class="message error vlo-login-attention">' . esc_html( $message ) . '</p>';
@@ -109,19 +106,19 @@ add_filter( 'login_message', 'vlo_add_login_message' );
  * Save options
  */
 function vlo_save_options() {
-	$vlomenu = filter_input( INPUT_POST, 'vlo-menu' );
+	$vlomenu = filter_input( INPUT_POST, 'vlo_menu' );
 	if ( ! empty( $vlomenu ) ) :
-		if ( check_admin_referer( 'vlo-nonce-key', 'vlo-menu' ) ) :
-			$data = filter_input( INPUT_POST, 'vlo-message-data' );
+		if ( check_admin_referer( 'vlo_nonce_key', 'vlo_menu' ) ) :
+			$data = filter_input( INPUT_POST, 'vlo_message_data' );
 			if ( ! empty( $data ) ) :
-				update_option( 'vlo-message-data', sanitize_text_field( wp_unslash( $data ) ) );
+				update_option( 'vlo_message_data', sanitize_text_field( wp_unslash( $data ) ) );
 			else :
-				update_option( 'vlo-message-data', '' );
+				update_option( 'vlo_message_data', '' );
 			endif;
 		endif;
 
 		add_action( 'admin_notices', 'vlo_admin_notices' );
-		wp_safe_redirect( menu_page_url( 'vlo-menu', false ) );
+		wp_safe_redirect( menu_page_url( 'vlo_menu', false ) );
 	endif;
 }
 add_action( 'admin_init', 'vlo_save_options' );
