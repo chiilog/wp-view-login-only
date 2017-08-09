@@ -3,7 +3,7 @@ Contributors: mel_cha
 Tags: secret, login, lock, redirect
 Requires at least: 4.7.5
 Tested up to: 4.7.5
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,6 +17,11 @@ If you view a website without log in, WordPress redirect to the login page
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 
 == Changelog ==
+
+= 1.2.2 =
+* php refactoring
+* PHPUnitTest done
+* Author URI changed
 
 = 1.2.1 =
 * php refactoring.

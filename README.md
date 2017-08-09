@@ -11,6 +11,10 @@ If you view a website without log in, WordPress redirect to the login page
 
 ## Changelog
 
+### 1.2.2
+* php refactoring
+* PHPUnitTest done
+
 ### 1.2.1
 * php refactoring.
 
