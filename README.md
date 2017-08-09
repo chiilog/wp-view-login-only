@@ -1,4 +1,4 @@
-# WP view login only
+# WP view login only [![Build Status](https://travis-ci.org/chiilog/wp-view-login-only.svg?branch=master)](https://travis-ci.org/chiilog/wp-view-login-only) [![license](https://img.shields.io/github/license/chiilog/wp-view-login-only.svg?maxAge=2592000)](https://github.com/chiilog/wp-view-login-only/blob/master/LICENSE) [![license](https://img.shields.io/wordpress/plugin/dt/wp-view-login-only.svg)](https://wordpress.org/plugins/wp-view-login-only/) [![license](https://img.shields.io/wordpress/plugin/r/wp-view-login-only.svg)](https://wordpress.org/plugins/wp-view-login-only/#reviews)
 
 If you view a website without log in, WordPress redirect to the login page
 
