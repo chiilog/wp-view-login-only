@@ -6,11 +6,6 @@
  */
 
 /**
- * Require wp-view-login-only function.
- */
-require_once( './wp-view-login-only.php' );
-
-/**
  * Test case.
  */
 class VloTest extends WP_UnitTestCase {
