@@ -88,16 +88,33 @@ function vlo_options() {
 }
 
 /**
- * Return login message
+ * Get message in loginpage
  */
-function vlo_add_login_message() {
-	if ( ! get_option( 'vlo_message_data' ) ) :
+function vlo_get_login_message() {
+	return get_option( 'vlo_message_data' );
+}
+
+/**
+ * Create message in loginpage
+ */
+function vlo_create_login_message( $option ) {
+	if ( ! $option ) :
 		$message = __( 'Welcome to this site. Please log in to continue', 'wp-view-login-only' );
 	else :
-		$message = get_option( 'vlo_message_data' );
+		$message = $option;
 	endif;
 
 	return '<p class="message error vlo-login-attention">' . esc_html( $message ) . '</p>';
+}
+
+/**
+ * Return login message
+ */
+function vlo_add_login_message() {
+	$option = vlo_get_login_message();
+	$message = vlo_create_login_message( $option );
+
+	return $message;
 }
 add_filter( 'login_message', 'vlo_add_login_message' );
 
