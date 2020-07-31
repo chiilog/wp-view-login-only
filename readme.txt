@@ -18,6 +18,12 @@ If you view a website without log in, WordPress redirect to the login page
 
 == Changelog ==
 
+= 1.2.6 =
+* Tested WordPress 5.4.2
+
+= 1.2.5 =
+* Tested WordPress 4.8.2
+
 = 1.2.4 =
 * php refactoring
 * PHPUnitTest done
