@@ -1,6 +1,6 @@
 {
   "name": "wp-view-login-only",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "author": "Chiaki Okamoto <purgexpurge@gmail.com> (https://chiilog.com/)",
   "dependencies": {},
   "devDependencies": {

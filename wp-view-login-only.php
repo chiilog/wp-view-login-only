@@ -5,7 +5,7 @@
  * Description: If you view a website without log in, WordPress redirect to the login page
  * Author: mel_cha
  * Author URI: https://chiilog.com/
- * Version: 1.2.6
+ * Version: 1.2.7
  * Text Domain: wp-view-login-only
  *
  * @package wp-view-login-only
