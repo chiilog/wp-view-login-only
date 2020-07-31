@@ -1,0 +1,42 @@
+{
+  "name": "wp-view-login-only",
+  "version": "1.2.5",
+  "author": "Chiaki Okamoto <purgexpurge@gmail.com> (https://chiilog.com/)",
+  "dependencies": {},
+  "devDependencies": {
+    "@wordpress/browserslist-config": "2.7.0",
+    "@wordpress/scripts": "^12.1.1"
+  },
+  "license": "GPL-2.0+",
+  "main": "wp-view-login-only.php",
+  "release-it": {
+    "hooks": {
+      "before:bump": "bash ./bin/build.sh wp-view-login-only ${version}",
+      "after:bump": "bash ./bin/create-zip.sh wp-view-login-only",
+      "after:release": "bash ./bin/cleanup.sh wp-view-login-only"
+    },
+    "github": {
+      "release": true,
+      "assets": [
+        "wp-view-login-only.zip"
+      ]
+    },
+    "npm": {
+      "publish": false
+    }
+  },
+  "repository": {
+    "url": "git@github.com:chiilog/wp-view-login-only.git",
+    "type": "git"
+  },
+  "scripts": {
+    "env": "wp-scripts env",
+    "packages-update": "wp-scripts packages-update",
+    "start": "wp-scripts start"
+  },
+  "wp-env": {
+    "plugin-dir": "wp-view-login-only",
+    "plugin-name": "wp-view-login-only",
+    "welcome-build-command": "npm run start"
+  }
+}
