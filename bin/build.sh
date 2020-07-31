@@ -19,8 +19,6 @@ sed -i.bak -e "s/^ \* Version: .*/ * Version: ${version}/g" ${pluginname}.php;
 sed -i.bak -e "s/^ \* @version .*/ * @version ${version}/g" ${pluginname}.php;
 
 rm ${pluginname}.php.bak
-npm install
-npm run build
 
 rsync -a --exclude-from=.distignore ./ ./nightly/
 
